@@ -1,0 +1,47 @@
+﻿@page
+@model FinalExamplewebApp.Pages.ProductsModel
+@{
+    ViewData["Title"] = "Просмотр данных";
+}
+
+@if (TempData["OrderMessage"] != null)
+{
+    <div>
+        <h2>@TempData["OrderMessage"]</h2>
+        <a href="/Products">Назад к списку товаров</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+}
+else
+{
+    <h2>Список товаров</h2>
+
+    <div>
+        @if (Model.Products == null || !Model.Products.Any())
+        {
+            <p>Товары не найдены или загружаются...</p>
+        }
+        else
+        {
+            @foreach (var item in Model.Products)
+            {
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px; max-width: 500px;">
+                    <strong>@item.Name</strong><br />
+                    @item.Description<br />
+                    Производитель: @item.Manufacturer<br />
+                    Цена: @item.Sale<br />
+
+                    <form method="post" asp-page-handler="Order" style="margin-top: 10px;">
+                        <input type="hidden" name="title" value="@item.Name" />
+                        <input type="hidden" name="price" value="@item.Sale" />
+                        <button type="submit">Заказать</button>
+                    </form>
+                </div>
+            }
+        }
+    </div>
+}
