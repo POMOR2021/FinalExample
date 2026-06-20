@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="DataAccessLibrary/DataAccessLibrary.csproj" />
+  <Project Path="FinalClentApp/FinalClentApp.csproj" Id="f0946b58-193f-45e8-9056-7ecb0e1e4bfa" />
   <Project Path="FinalExampleAPI/FinalExampleAPI.csproj" />
   <Project Path="FinalExamplewebApp/FinalExamplewebApp.csproj" Id="73debe05-9608-4c30-bf24-505679821d6c" />
 </Solution>
