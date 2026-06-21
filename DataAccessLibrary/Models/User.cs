@@ -3,7 +3,10 @@
 namespace DataAccessLibrary.Models
 {
     [Table("FinalUser")]
-    public class User // Модель пользователей
+    /// <summary>
+    /// Модель пользователей
+    /// </summary>
+    public class User
     {
         public int Id { get; set; }
         public string Role { get; set; }

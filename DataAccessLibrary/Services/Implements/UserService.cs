@@ -14,33 +14,49 @@ namespace DataAccessLibrary.Services.Implements
         {
             _context = context;
         }
-        public async Task AddAsync(User user) // Метод добавления пользователя
+
+        /// <summary>
+        /// Метод добавления пользователя
+        /// </summary>
+        public async Task AddAsync(User user)
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id) // Метод удаления пользователя
+        /// <summary>
+        /// Метод удаления пользователя
+        /// </summary>
+        public async Task DeleteAsync(int id)
         {
             var user = await _context.Users.FindAsync(id);
-            if(user is not null)
+            if (user is not null)
             {
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync() // Метод получения пользователей
+        /// <summary>
+        /// Метод получения пользователей
+        /// </summary>
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<User> GetUsersByIdAsync(int id) // Метод добавления пользователя по номеру
+        /// <summary>
+        /// Метод добавления пользователя по номеру
+        /// </summary>
+        public async Task<User> GetUsersByIdAsync(int id)
         {
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task UpdateAsync(int id, User updatedUser) // Метод обновления пользователя
+        /// <summary>
+        /// Метод обновления пользователя
+        /// </summary>
+        public async Task UpdateAsync(int id, User updatedUser)
         {
             var user = await _context.Users.FindAsync(id);
             if (user is not null)

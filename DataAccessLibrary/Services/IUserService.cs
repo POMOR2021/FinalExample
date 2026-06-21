@@ -5,7 +5,10 @@ using System.Text;
 
 namespace DataAccessLibrary.Services
 {
-    public interface IUserService // Интерфейс для реализации сервиса пользователей
+    /// <summary>
+    /// Интерфейс для реализации сервиса пользователей
+    /// </summary>
+    public interface IUserService
     {
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User> GetUsersByIdAsync(int id);

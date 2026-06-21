@@ -17,7 +17,10 @@ namespace FinalExampleAPI.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> Get() //Получение всех пользователей
+        /// <summary>
+        /// Получение всех пользователей
+        /// </summary>
+        public async Task<ActionResult<IEnumerable<User>>> Get()
         {
             try
             {
@@ -32,7 +35,10 @@ namespace FinalExampleAPI.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get(int id) //Получение пользователя по номеру
+        /// <summary>
+        /// Получение пользователя по номеру
+        /// </summary>
+        public async Task<ActionResult<User>> Get(int id)
         {
             try
             {
@@ -51,7 +57,10 @@ namespace FinalExampleAPI.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] User value) //Добавление пользователя
+        /// <summary>
+        /// Добавление пользователя
+        /// </summary>
+        public async Task<IActionResult> Post([FromBody] User value)
         {
             try
             {
@@ -66,7 +75,10 @@ namespace FinalExampleAPI.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] User value) //Обновление пользователя
+        /// <summary>
+        /// Обновление пользователя
+        /// </summary>
+        public async Task<IActionResult> Put(int id, [FromBody] User value)
         {
             try
             {
@@ -76,7 +88,7 @@ namespace FinalExampleAPI.Controllers
                     return NotFound($"Пользователь с id {id} не найден.");
                 }
 
-                await _userService.UpdateAsync(id, value); 
+                await _userService.UpdateAsync(id, value);
                 return NoContent();
             }
             catch
@@ -87,7 +99,10 @@ namespace FinalExampleAPI.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)  //Удаление пользователя
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {

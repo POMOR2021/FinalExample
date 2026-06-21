@@ -5,7 +5,10 @@ using System.Text;
 
 namespace DataAccessLibrary.Services
 {
-    public interface IBookService // Интерфейс для реализации сервиса книг
+    /// <summary>
+    /// Интерфейс для реализации сервиса книг
+    /// </summary>
+    public interface IBookService 
     {
         Task<IEnumerable<Book>> GetAllBooksAsync();
         Task<Book> GetBookByIdAsync(int id);

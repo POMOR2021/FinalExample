@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalClentApp"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
+        Title="LoginWindow" Height="450" Width="800" FontFamily="Calibri">
     <StackPanel Margin="20" VerticalAlignment="Center">
         <TextBlock Text="Логин:" Margin="0,0,0,5"/>
         <TextBox x:Name="TxtLogin" Height="25" Margin="0,0,0,10"/>
@@ -13,6 +13,6 @@
         <TextBlock Text="Пароль:" Margin="0,0,0,5"/>
         <PasswordBox x:Name="Password" Height="25" Margin="0,0,0,20"/>
 
-        <Button x:Name="SubmitButton" Content="Войти" Height="30" Click="BtnSubmit_Click" IsDefault="True"/>
+        <Button x:Name="SubmitButton" Content="Войти" Height="30" Click="BtnSubmit_Click" Background="#B8860B" Foreground="White" IsDefault="True"/>
     </StackPanel>
 </Window>

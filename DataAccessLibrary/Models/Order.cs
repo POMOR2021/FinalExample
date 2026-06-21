@@ -6,7 +6,10 @@ using System.Text;
 namespace DataAccessLibrary.Models
 {
     [Table("FinalOrder")]
-    public class Order //Модель заказов
+    /// <summary>
+    /// Модель заказов
+    /// </summary>
+    public class Order 
     {
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }

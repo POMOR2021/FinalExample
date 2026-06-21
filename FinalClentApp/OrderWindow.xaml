@@ -1,12 +1,64 @@
 ﻿<Window x:Class="FinalClentApp.OrderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FinalClentApp"
-        mc:Ignorable="d"
-        Title="OrderWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Просмотр заказа" Height="500" Width="600" WindowStartupLocation="CenterOwner" FontFamily="Calibri">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Ваш заказ" FontSize="20" FontWeight="Bold" Foreground="#B8860B" Margin="0,0,0,5"/>
+            <TextBlock x:Name="ClientInfoTextBlock" Text="Клиент: Гость" FontSize="14" FontWeight="Bold" Foreground="Gray" Margin="0,0,0,10"/>
+        </StackPanel>
+       
+
+        <ListBox x:Name="OrderItemsListBox" Grid.Row="2" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="{Binding Book.Name}" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Book.Manufacturer}" Foreground="Gray"/>
+                            <TextBlock Text="{Binding OrderItem.Price, StringFormat='Цена: {0} руб.'}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0">
+                            <TextBlock Text="Кол-во: " VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding OrderItem.Quantity, UpdateSourceTrigger=PropertyChanged}" 
+                                     Width="40" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                     TextChanged="QuantityTextBox_TextChanged"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="2" Content="Удалить" Width="70" Height="25" 
+                                Background="Crimson" Foreground="White"
+                                Click="DeleteButton_Click" VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Row="3" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TotalSumTextBlock" Text="Итого: 0 руб." FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Content="Оформить заказ" Width="130" Height="30" Click="CheckoutButton_Click" 
+                        Background="#DAA520" Foreground="White" Margin="0,0,10,0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

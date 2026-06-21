@@ -14,36 +14,52 @@ namespace DataAccessLibrary.Services.Implements
         {
             _context = context;
         }
-        public async Task AddAsync(Book book) // Метод добаления книги
+
+        /// <summary>
+        /// Метод добаления книги
+        /// </summary>
+        public async Task AddAsync(Book book)
         {
             await _context.Books.AddAsync(book);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id) // Метод удаления книги
+        /// <summary>
+        /// Метод удаления книги
+        /// </summary>
+        public async Task DeleteAsync(int id)
         {
             var book = await _context.Books.FindAsync(id);
-            if(book is not null)
+            if (book is not null)
             {
                 _context.Books.Remove(book);
                 await _context.SaveChangesAsync();
             }
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync() // Метод получения книг
+        /// <summary>
+        /// Метод получения книг
+        /// </summary>
+        public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
             return await _context.Books.ToListAsync();
         }
 
-        public async Task<Book> GetBookByIdAsync(int id) // Метод получения книг по номеру
+        /// <summary>
+        /// Метод получения книг по номеру
+        /// </summary>
+        public async Task<Book> GetBookByIdAsync(int id)
         {
             return await _context.Books.FindAsync(id);
         }
 
-        public async Task UpdateAsync(int id,Book updatedBook) // Метод обновления книги
+        /// <summary>
+        /// Метод обновления книги
+        /// </summary>
+        public async Task UpdateAsync(int id, Book updatedBook)
         {
             var book = _context.Books.Find(id);
-            if(book is not null)
+            if (book is not null)
             {
                 book.Author = updatedBook.Author;
                 book.SKU = updatedBook.SKU;

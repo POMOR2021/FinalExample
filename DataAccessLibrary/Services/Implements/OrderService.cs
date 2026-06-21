@@ -14,13 +14,20 @@ namespace DataAccessLibrary.Services.Implements
         {
             _context = context;
         }
-        public async Task AddAsync(Order order)  // Метод добавления книги
+
+        /// <summary>
+        /// Метод добавления заказа
+        /// </summary>
+        public async Task AddAsync(Order order)
         {
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id) // Метод удаления книги
+        /// <summary>
+        /// Метод удаления заказа
+        /// </summary>
+        public async Task DeleteAsync(int id)
         {
             var order = await _context.Orders.FindAsync(id);
             if (order is not null)
@@ -30,20 +37,29 @@ namespace DataAccessLibrary.Services.Implements
             }
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync() // Метод получения книг
+        /// <summary>
+        /// Метод получения заказов
+        /// </summary>
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
             return await _context.Orders.ToListAsync();
         }
 
-        public async Task<Order> GetOrderByIdAsync(int id) // Метод получения книги по номеру
+        /// <summary>
+        /// Метод получения заказа по номеру
+        /// </summary>
+        public async Task<Order> GetOrderByIdAsync(int id)
         {
             return await _context.Orders.FindAsync(id);
         }
 
-        public async Task UpdateAsync(int id, Order updatedOrder) // Метод обновления книги
+        /// <summary>
+        /// Метод обновления заказа
+        /// </summary>
+        public async Task UpdateAsync(int id, Order updatedOrder)
         {
             var order = await _context.Orders.FindAsync(id);
-            if(order is not null)
+            if (order is not null)
             {
                 order.OrderDate = updatedOrder.OrderDate;
                 order.DeliveryDate = updatedOrder.DeliveryDate;
@@ -54,4 +70,4 @@ namespace DataAccessLibrary.Services.Implements
             }
         }
     }
-} 
+}

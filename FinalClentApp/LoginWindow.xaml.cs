@@ -1,18 +1,21 @@
 ﻿using DataAccessLibrary.Models;
-using System;
-using System.Linq; // Убедитесь, что этот using добавлен для работы FirstOrDefault
 using System.Windows;
 
 namespace FinalClentApp
 {
+    /// <summary>
+    /// Класс окна авторизации
+    /// </summary>
     public partial class LoginWindow : Window
     {
-        // Конструктор теперь пустой и ничего не требует
         public LoginWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик кнопки "Войти"
+        /// </summary>
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
             string login = TxtLogin.Text.Trim();
@@ -20,11 +23,10 @@ namespace FinalClentApp
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Заполните все поля!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Заполните все поля", "Внимание", MessageBoxButton.OK);
                 return;
             }
 
-            // Создаем контекст только на время выполнения запроса
             using (var context = new AppDbContext())
             {
                 User user = context.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
@@ -41,9 +43,9 @@ namespace FinalClentApp
                 }
                 else
                 {
-                    MessageBox.Show("Неверный логин или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK);
                 }
-            } // Здесь context автоматически закроется и уничтожится
+            }
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLibrary.Models
 {
     [Table("FinalBook")]
-    public class Book // Модель книг
+    /// <summary>
+    /// Модель книг
+    /// </summary>
+    public class Book
     {
         public int Id { get; set; }
         public string SKU { get; set; }

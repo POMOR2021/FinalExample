@@ -2,47 +2,42 @@
 using DataAccessLibrary.Services;
 using Microsoft.AspNetCore.Mvc;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace FinalExampleAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrderItemController : ControllerBase
     {
-        private readonly IOrderService _orderService;
+        private readonly IOrderItemService _orderItemService;
 
-        public OrderController(IOrderService orderService)
+        public OrderItemController(IOrderItemService orderService)
         {
-            _orderService = orderService;
+            _orderItemService = orderService;
         }
 
         // GET: api/<OrderController>
         [HttpGet]
         /// <summary>
-        /// Получение всех заказов
+        /// Получение всех элементов заказа
         /// </summary>
-        public async Task<ActionResult<IEnumerable<Order>>> Get()
+        public async Task<ActionResult<IEnumerable<OrderItem>>> Get()
         {
-            try
-            {
-                var orders = await _orderService.GetAllOrdersAsync();
-                return Ok(orders);
-            }
-            catch
-            {
-                return StatusCode(500, "Внутренняя ошибка сервера при получении заказов.");
-            }
+            var orders = await _orderItemService.GetAllOrderItemsAsync();
+            return Ok(orders);
         }
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
         /// <summary>
-        /// Получение заказа по номеру
+        /// Получение элемента заказа по номеру
         /// </summary>
         public async Task<ActionResult<Order>> Get(int id)
         {
             try
             {
-                var order = await _orderService.GetOrderByIdAsync(id);
+                var order = await _orderItemService.GetOrderItemsByIdAsync(id);
                 if (order is null)
                 {
                     return NotFound($"Заказ с id {id} не найден.");
@@ -58,13 +53,13 @@ namespace FinalExampleAPI.Controllers
         // POST api/<OrderController>
         [HttpPost]
         /// <summary>
-        /// Добавление заказа
+        /// Добавление элемента заказа
         /// </summary>
-        public async Task<IActionResult> Post([FromBody] Order value)
+        public async Task<IActionResult> Post([FromBody] OrderItem value)
         {
             try
             {
-                await _orderService.AddAsync(value);
+                await _orderItemService.AddAsync(value);
                 return Created();
             }
             catch
@@ -76,20 +71,20 @@ namespace FinalExampleAPI.Controllers
         // PUT api/<OrderController>/5
         [HttpPut("{id}")]
         /// <summary>
-        /// Обновление заказа
+        /// Обновление элемента заказа
         /// </summary>
-        public async Task<IActionResult> Put(int id, [FromBody] Order value)
+        public async Task<IActionResult> Put(int id, [FromBody] OrderItem value)
         {
 
             try
             {
-                var existingOrder = await _orderService.GetOrderByIdAsync(id);
+                var existingOrder = await _orderItemService.GetOrderItemsByIdAsync(id);
                 if (existingOrder is null)
                 {
                     return NotFound($"Заказ с id {id} не найден.");
                 }
 
-                await _orderService.UpdateAsync(id, value);
+                await _orderItemService.UpdateAsync(id, value);
                 return NoContent();
             }
             catch
@@ -101,19 +96,19 @@ namespace FinalExampleAPI.Controllers
         // DELETE api/<OrderController>/5
         [HttpDelete("{id}")]
         /// <summary>
-        /// Удаление заказа
+        /// Удаление элемента заказа
         /// </summary>
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var existingOrder = await _orderService.GetOrderByIdAsync(id);
+                var existingOrder = await _orderItemService.GetOrderItemsByIdAsync(id);
                 if (existingOrder is null)
                 {
                     return NotFound($"Заказ с id {id} не найден.");
                 }
 
-                await _orderService.DeleteAsync(id);
+                await _orderItemService.DeleteAsync(id);
                 return NoContent();
             }
             catch

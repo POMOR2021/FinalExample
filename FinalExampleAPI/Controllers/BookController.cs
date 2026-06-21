@@ -17,7 +17,10 @@ namespace FinalExampleAPI.Controllers
 
         // GET: api/<BookController> 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> Get() //Получение всех книг 
+        /// <summary>
+        /// Получение всех книг 
+        /// </summary>
+        public async Task<ActionResult<IEnumerable<Book>>> Get()
         {
             try
             {
@@ -32,7 +35,10 @@ namespace FinalExampleAPI.Controllers
 
         // GET api/<BookController>/5 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> Get(int id) //Получение книги по номеру
+        /// <summary>
+        /// Получение книги по номеру
+        /// </summary>
+        public async Task<ActionResult<Book>> Get(int id)
         {
             try
             {
@@ -51,7 +57,10 @@ namespace FinalExampleAPI.Controllers
 
         // POST api/<BookController> 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Book value) //Добавление книги
+        /// <summary>
+        /// Добавление книги
+        /// </summary>
+        public async Task<IActionResult> Post([FromBody] Book value)
         {
             try
             {
@@ -66,7 +75,10 @@ namespace FinalExampleAPI.Controllers
 
         // PUT api/<BookController>/5 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Book value) //Обновление книги
+        /// <summary>
+        /// Обновление книги
+        /// </summary>
+        public async Task<IActionResult> Put(int id, [FromBody] Book value)
         {
             try
             {
@@ -87,7 +99,10 @@ namespace FinalExampleAPI.Controllers
 
         // DELETE api/<BookController>/5 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id) //Удаление книги
+        /// <summary>
+        /// Удаление книги
+        /// </summary>
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {

@@ -6,7 +6,10 @@ using System.Text;
 
 namespace DataAccessLibrary.Services
 {
-    public interface IOrderService // Интерфейс для реализации сервиса заказов
+    /// <summary>
+    /// Интерфейс для реализации сервиса заказов
+    /// </summary>
+    public interface IOrderService 
     {
         Task<IEnumerable<Order>> GetAllOrdersAsync();
         Task<Order> GetOrderByIdAsync(int id);

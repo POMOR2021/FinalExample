@@ -17,7 +17,10 @@ namespace FinalExamplewebApp.Pages
         public IEnumerable<Book> Products { get; set; }
         public string? ErrorMessage { get; set; }
 
-        public async Task OnGetAsync() // Метод получения данных с сервера 
+        /// <summary>
+        /// Метод получения данных с сервера 
+        /// </summary>
+        public async Task OnGetAsync()
         {
             try
             {
@@ -37,7 +40,10 @@ namespace FinalExamplewebApp.Pages
             }
         }
 
-        public IActionResult OnPostOrder(string title, string price) // Метод записи сообщения на вспомогательню страницу
+        /// <summary>
+        /// Метод записи сообщения на вспомогательню страницу
+        /// </summary>
+        public IActionResult OnPostOrder(string title, string price)
         {
             TempData["OrderMessage"] = $"Товар \"{title}\" добавлен в заказ.";
 
